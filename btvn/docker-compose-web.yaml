@@ -1,0 +1,25 @@
+version: '3.5'
+
+services:
+    webserver:
+        image: nginx:1.22.0-alpine
+        
+
+        ports:
+            - 8000:80
+        
+        volumes:
+            - ./nginx/conf.d/:/etc/nginx/conf.d/
+        
+        networks:
+            - btvn_default
+volumes:
+    mongodata:
+
+networks:
+    btvn_default:
+        external: true 
+
+# docker-compose -f docker-compose-db.yaml -f docker-compose-web.yaml -f docker-compose-api.yaml  down
+# ansible-playbook -i Ansible/inventory/inventory.yaml Ansible/setup.yaml 
+
